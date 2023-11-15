@@ -14,12 +14,13 @@
                 </div>
                 <div class="my-1">
                     <h5 class="font-semibold">AMOUNT</h5>
-                    <p>KSH. 2,500.00</p>
+                    <p>KSH. {{ $amount }}</p>
                     <p class="text-xs">FEE: KSH. 0.00</p>
                 </div>
             </div>
-            <form action="{{ route('stkPush') }}" method="POST" class="w-3/4">
+            <form action="{{ route('stk') }}" method="POST" class="w-3/4">
                 @csrf
+                <input type="number" min="1" max="500,000" name="amount" class="bg-[#fafafa] border w-full rounded p-1 mt-4" value="{{ number_format($amount) }}" hidden />
                 <div class="flex mx-auto w-full">
                     <button type="submit" class="mx-auto bg-[#16a34a] border text-white font-semibold w-full p-1 mt-4 rounded hover:bg-[#22c55e] hover:transition-all">MAKE PAYMENT</button>
                 </div>

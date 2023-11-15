@@ -4,7 +4,7 @@
             <h5 class="justify-end mx-auto font-semibold">Enter your bill amount</h5>
             <form action="{{ route('confirmation') }}" method="POST" class="w-3/4">
                 @csrf
-                <input type="number" min="1" class="bg-[#fafafa] border w-full rounded p-1 mt-4">
+                <input type="number" min="1" max="500,000" name="amount" class="bg-[#fafafa] border w-full rounded p-1 mt-4">
                 <h5 class="font mt-3">Cashback amount: Kes 0.00</h5>
                 <div class="flex mx-auto w-full">
                     <button type="submit" class="mx-auto bg-[#16a34a] border text-white font-semibold w-3/4 p-1 mt-4 rounded hover:bg-[#22c55e] hover:transition-all">PAY</button>

@@ -28,24 +28,29 @@ class PaymentController extends Controller
      */
     public function confirmation(Request $request)
     {
-        return view('confirmation');
+        // dd($request->amount);
+        $amount = number_format($request->amount, 2);
+        return view('confirmation')->with('amount', $amount);
     }
 
     /**
      * Display a listing of the resource.
      */
-    public function stkPush(Request $request)
+    public function stk(Request $request)
     {
         $mpesa= new \Safaricom\Mpesa\Mpesa();
+        $amount = strval($request->amount);
+        // dd(gettype($request->amount));
+        // dd($request->amount);
 
         $BusinessShortCode = '174379';
         $LipaNaMpesaPasskey = 'bfb279f9aa9bdbcf158e97dd71a467cd2e0c893059b10f78e6b72ada1ed2c919';
         $TransactionType = 'CustomerPayBillOnline';
-        $Amount = '1';
+        $Amount = $amount;
         $PartyA = '254795909989';
         $PartyB = '174379';
         $PhoneNumber = '254795909989';
-        $CallBackURL = 'https://yourdomain.com/mpesa/confirmation';
+        $CallBackURL = 'https://85be-197-237-209-31.ngrok-free.app';
         $AccountReference = 'AccountReference';
         $TransactionDesc = 'TransactionDesc';
         $Remarks = 'Remarks';
@@ -63,7 +68,10 @@ class PaymentController extends Controller
             $TransactionDesc,
             $Remarks
         );
-        dd($stkPushSimulation);
+        // dd($stkPushSimulation);
+
+        // $callbackData=$mpesa->getDataFromCallback();
+        // dd($callbackData);
         
         return view('process');
     }
@@ -73,6 +81,10 @@ class PaymentController extends Controller
      */
     public function success()
     {
+        $mpesa= new \Safaricom\Mpesa\Mpesa();
+
+        $callbackData=$mpesa->getDataFromCallback();
+        // dd($callbackData);
         return view('success');
     }
 

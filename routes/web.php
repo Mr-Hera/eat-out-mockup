@@ -17,5 +17,5 @@ use App\Http\Controllers\PaymentController;
 Route::get('', [PaymentController::class, 'index']);
 Route::get('payment', [PaymentController::class, 'payment'])->name('payment');
 Route::post('confirmation', [PaymentController::class, 'confirmation'])->name('confirmation');
-Route::post('processing', [PaymentController::class, 'stkPush'])->name('stkPush');
+Route::post('processing', [PaymentController::class, 'stk'])->name('stk');
 Route::post('success', [PaymentController::class, 'success'])->name('success');
